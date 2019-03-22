@@ -16,12 +16,15 @@ public class ShipMovement : MonoBehaviour
 
 	public ShipMode movementMode;
 
+	public Quaternion basicRotation;
+
     void Start()
     {
-    	movementMode = ShipMode.Horizontal;
-        gyro = Input.gyro;
-        gyro.enabled = true;
-        rb = GetComponent<Rigidbody>();
+    	basicRotation 			= this.transform.rotation;
+    	movementMode 			= ShipMode.Horizontal;
+        gyro 					= Input.gyro;
+        gyro.enabled 			= true;
+        rb 						= GetComponent<Rigidbody>();
     }
 
     void Update()
@@ -31,11 +34,11 @@ public class ShipMovement : MonoBehaviour
     	}
     	switch (movementMode) {
     		case ShipMode.Horizontal:
-		        rb.velocity = new Vector3(Input.acceleration.x, 0f, Input.acceleration.y) * Mathf.Pow(speed, 2) / 2;// * Time.deltaTime;
+		        rb.velocity = new Vector3(Input.acceleration.x, 0f, Input.acceleration.y) * Mathf.Pow(speed, 2) / 1.5f;// * Time.deltaTime;
     			break;
     		case ShipMode.Vertical:
     			rb.velocity = Vector3.zero;
-    			rb.velocity = new Vector3(rb.velocity.x, Input.acceleration.y, rb.velocity.z);
+    			rb.velocity = new Vector3(rb.velocity.x, Input.acceleration.y, rb.velocity.z) * speed;
     			break;
     	}
     }
