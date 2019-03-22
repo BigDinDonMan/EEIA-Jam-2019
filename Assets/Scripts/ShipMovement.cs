@@ -17,9 +17,14 @@ public class ShipMovement : MonoBehaviour
 	public ShipMode movementMode;
 
 	public Quaternion basicRotation;
+	public Quaternion basicCameraRotation;
+
+	public Camera cam;
 
     void Start()
     {
+    	cam 					= GetComponentInChildren<Camera>();
+    	basicCameraRotation		= cam.transform.rotation;
     	basicRotation 			= this.transform.rotation;
     	movementMode 			= ShipMode.Horizontal;
         gyro 					= Input.gyro;
@@ -41,10 +46,16 @@ public class ShipMovement : MonoBehaviour
     			rb.velocity = new Vector3(rb.velocity.x, Input.acceleration.y, rb.velocity.z) * speed;
     			break;
     	}
+    	RotateShip();
     }
 
     void ToggleShipMode() {
     	if (movementMode == ShipMode.Horizontal) movementMode = ShipMode.Vertical;
     	else movementMode = ShipMode.Horizontal;
+    }
+
+    void RotateShip() {
+    	this.transform.rotation = Quaternion.Lerp(basicRotation, Quaternion.Euler(rb.velocity), 0.1f);
+    	cam.transform.rotation = basicCameraRotation;
     }
 }
