@@ -1,18 +1,18 @@
 fileFormatVersion: 2
-guid: f2d26c7c7c82dd04aade77820bfb7c69
+guid: 1cc00f48cba6e09479a8fa74a8b3731a
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
     100000: //RootNode
     400000: //RootNode
     2100000: cow
-    2100002: horns
-    2100004: pink
-    2100006: eyes
+    2100002: Patch
+    2100004: horns
+    2100006: pink
+    2100008: eyes
     2300000: //RootNode
     3300000: //RootNode
     4300000: Cube
-    2186277476908879412: ImportLogs
   externalObjects: {}
   materials:
     importMaterials: 1
