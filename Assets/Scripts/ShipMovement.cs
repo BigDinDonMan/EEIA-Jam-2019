@@ -32,6 +32,9 @@ public class ShipMovement : MonoBehaviour
 
 	public Transform beamPoint;
 
+	public Transform movingParticles;
+	public Transform beamParticles;
+
 
     void Start()
     {
@@ -43,6 +46,8 @@ public class ShipMovement : MonoBehaviour
         rb 						= transform.parent.gameObject.GetComponent<Rigidbody>();
         ufoRb 					= GetComponent<Rigidbody>();
         beamPoint.gameObject.SetActive(false);
+        beamParticles.gameObject.SetActive(false);
+        movingParticles.gameObject.SetActive(true);
     }
 
     void Update()
@@ -70,8 +75,6 @@ public class ShipMovement : MonoBehaviour
     			ufoRb.velocity = rb.velocity;
     			break;
     	}
-    	//Debug.Log(Input.acceleration.ToString());
-    	
     }
 
     public void ToggleShipMode() {
@@ -82,10 +85,14 @@ public class ShipMovement : MonoBehaviour
 
     public void BeamStart() {
     	beamPoint.gameObject.SetActive(true);
+    	beamParticles.gameObject.SetActive(true);
+    	movingParticles.gameObject.SetActive(false);
     }
 
     public void BeamStop() {
     	beamPoint.gameObject.SetActive(false);
+    	beamParticles.gameObject.SetActive(false);
+    	movingParticles.gameObject.SetActive(true);
     }
 
 

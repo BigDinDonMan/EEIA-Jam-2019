@@ -31,13 +31,16 @@ public class Animal : MonoBehaviour
 
 
 
-    void OnTriggerEnter(Collider other) {
+    void OnTriggerStay(Collider other) {
     	if (other.gameObject.CompareTag("Player")) {
     		Stats.GetInstance().ModifyMoney((int)this.type);
     		UIManager.instance.UpdateMoney();
     		Destroy(this.gameObject);
     	}
     	if (other.gameObject.CompareTag("Beam")) isInBeam = true;	
-    	else isInBeam = false;
+    }
+
+    void OnTriggerExit(Collider other) {
+    	if (other.gameObject.CompareTag("Beam")) isInBeam = false;
     }
 }
