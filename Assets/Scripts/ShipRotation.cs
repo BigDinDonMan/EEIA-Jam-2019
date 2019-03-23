@@ -8,12 +8,24 @@ public class ShipRotation : MonoBehaviour
     public float rotationValue;
     public Transform player;
 
+    private ShipMovement script;
+
+    private void Start() {
+    	script = player.GetChild(0).gameObject.GetComponent<ShipMovement>();
+    }
+
     public void RotateLeft() {
     	player.Rotate(0f, -rotationValue, 0f);
+    	script.basicRotation = player.transform.rotation;
+    	// player.GetChild(0).Rotate(0, -rotationValue, 0f);
+    	// player.GetChild(0).localRotation = player.GetChild(0).rotation;
     }
 
     public void RotateRight() {
     	player.Rotate(0f, rotationValue, 0f);
+    	script.basicRotation = player.transform.rotation;
+    	// player.GetChild(0).Rotate(0, rotationValue, 0f);
+    	// player.GetChild(0).localRotation = player.GetChild(0).rotation;
     }
 
     private IEnumerator RotatingLeft() {
