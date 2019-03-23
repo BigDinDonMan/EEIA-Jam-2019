@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Stats
 {
-	public ulong score;
+	public int money;
 	public float speed;
 
 	private static Stats instance = null;
@@ -15,6 +15,5 @@ public class Stats
 	}
 
 	private Stats() {
-		score = 0;
 	}
 }
