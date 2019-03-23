@@ -17,6 +17,7 @@ public class ShipMovement : MonoBehaviour
 
 	public float tilt;
 	public float clampValue;
+	public float delta;
 
 	public ShipMode movementMode;
 
@@ -53,10 +54,10 @@ public class ShipMovement : MonoBehaviour
 		        rb.velocity = Vector3.ClampMagnitude(rb.velocity, clampValue);
 		        ufoRb.velocity = rb.velocity;
 		        RotateShip();*/
-		       	if (Input.acceleration.y > 0.15f || Input.acceleration.y < -0.15f) {
+		       	if (Input.acceleration.y > delta || Input.acceleration.y < -delta) {
 		       		rb.velocity += transform.forward * speed * Input.acceleration.y;
 		       	}
-		       	if (Input.acceleration.x > 0.15f || Input.acceleration.x < -0.15f) {
+		       	if (Input.acceleration.x > delta || Input.acceleration.x < -delta) {
 		       		rb.velocity += transform.right * Input.acceleration.x * speed;
 		       	}
 		       	rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
