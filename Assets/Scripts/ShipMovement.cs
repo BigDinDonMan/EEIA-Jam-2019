@@ -29,7 +29,6 @@ public class ShipMovement : MonoBehaviour
 	public Vector3 offset;
 
 	public float rotateAngle;
-	public float beamForce;
 
 	public Transform beamPoint;
 
@@ -37,8 +36,6 @@ public class ShipMovement : MonoBehaviour
 	public Transform beamParticles;
 
 	public static bool buttonPressed = false;
-
-	public List<Animal> beamAnimals = new List<Animal>();
 
 
     void Start()
@@ -82,23 +79,17 @@ public class ShipMovement : MonoBehaviour
     		case ShipMode.Vertical:
     			rb.velocity = new Vector3(rb.velocity.x, Input.acceleration.y, rb.velocity.z) * speed;
     			ufoRb.velocity = rb.velocity;
-    			ufoRb.constraints = RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationX;
-    			if (Input.GetMouseButtonDown(0)) {
-    				beamAnimals.ForEach(animal => {
-    					if (animal.isInBeam) animal.BumpUpwards(beamForce);
-    					else try{
-    						beamAnimals.Remove(animal);
-    					} catch (System.Exception) {}
-    				});
+    			if (Input.GetMouseButton(0)) {
+
+    			} else {
+
     			}
-    			ufoRb.constraints = RigidbodyConstraints.None;
     			break;
     	}
     }
 
     public void ToggleShipMode() {
     	rb.velocity = ufoRb.velocity = Vector3.zero;
-    	this.transform.rotation = basicRotation;
     	if (movementMode == ShipMode.Horizontal) {
     		movementMode = ShipMode.Vertical;
     		ActivateBeam();
