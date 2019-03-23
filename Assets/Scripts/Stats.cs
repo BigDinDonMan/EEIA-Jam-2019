@@ -6,7 +6,8 @@ public class Stats
 {
 	public int money;
 	public float speed;
-	public int health;
+	public float health;
+	public float fuel;
 
 	private static Stats instance = null;
 
@@ -21,7 +22,9 @@ public class Stats
 		health = 150;
 	}
 
-	public void ModifyMoney(int value) {
-		money += value;
-	}
+	public void ModifyMoney(int value) => money += value;
+
+	public void ModifyFuel(float val) => fuel += val;
+
+	public void ReduceHealth(float val) => health -= val;
 }

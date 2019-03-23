@@ -35,6 +35,8 @@ public class ShipMovement : MonoBehaviour
 	public Transform movingParticles;
 	public Transform beamParticles;
 
+	public static bool buttonPressed = false;
+
 
     void Start()
     {
@@ -73,29 +75,46 @@ public class ShipMovement : MonoBehaviour
     		case ShipMode.Vertical:
     			rb.velocity = new Vector3(rb.velocity.x, Input.acceleration.y, rb.velocity.z) * speed;
     			ufoRb.velocity = rb.velocity;
+    			if (Input.GetMouseButton(0)) {
+
+    			} else {
+
+    			}
     			break;
     	}
     }
 
     public void ToggleShipMode() {
     	rb.velocity = ufoRb.velocity = Vector3.zero;
-    	if (movementMode == ShipMode.Horizontal) movementMode = ShipMode.Vertical;
-    	else movementMode = ShipMode.Horizontal;
+    	if (movementMode == ShipMode.Horizontal) {
+    		movementMode = ShipMode.Vertical;
+    		ActivateBeam();
+    		ActivateBeamParticles();
+    	}
+    	else {
+    		movementMode = ShipMode.Horizontal;
+    		DeactivateBeam();
+    		DeactivateBeamParticles();
+    	}
     }
 
-    public void BeamStart() {
+    public void ActivateBeam() {
     	beamPoint.gameObject.SetActive(true);
-    	beamParticles.gameObject.SetActive(true);
-    	movingParticles.gameObject.SetActive(false);
     }
 
-    public void BeamStop() {
+    public void DeactivateBeam() {
     	beamPoint.gameObject.SetActive(false);
-    	beamParticles.gameObject.SetActive(false);
-    	movingParticles.gameObject.SetActive(true);
     }
 
+    public void ActivateBeamParticles() {
+    	movingParticles.gameObject.SetActive(false);
+    	beamParticles.gameObject.SetActive(true);
+    }
 
+    public void DeactivateBeamParticles() {
+    	movingParticles.gameObject.SetActive(!false);
+    	beamParticles.gameObject.SetActive(!true);
+    }
 
     void RotateShip() {
     	this.transform.rotation = Quaternion.Lerp(basicRotation,Quaternion.Euler(new Vector3(ufoRb.velocity.z, 0f, -ufoRb.velocity.x) * 1.33f), tilt);

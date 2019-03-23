@@ -21,7 +21,8 @@ public class FuckupManager : MonoBehaviour
 		"Error: invalid token \"jak to jest być skrybą, dobrze?\" in class or struct declaration",
 		"Error: Could not initialize Unity graphics",
 		"OutOfMemoryException: why the hell are you programming in Java?",
-		"Error CS8025: Parsing error"
+		"Error CS8025: Parsing error",
+		"Wstawaj Maciek, naruszyłeś pamięć"
 	};
 
 
