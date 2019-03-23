@@ -1,21 +1,18 @@
 fileFormatVersion: 2
-guid: e689e247e4f2a0c408f7c7fb46112276
+guid: 5866770c68c33c44eb3ca3393390a78f
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
     100000: //RootNode
     400000: //RootNode
-    2100000: FenceH
-    2100002: FenceV
-    2100004: Roof
-    2100006: Roof_d
-    2100008: Building
-    2100010: Frame
-    2100012: Windows
-    2100014: Door
+    2100000: Roof
+    2100002: Building
+    2100004: Frame
+    2100006: Windows
+    2100008: Door
     2300000: //RootNode
     3300000: //RootNode
-    4300000: fence
+    4300000: Cube
   externalObjects: {}
   materials:
     importMaterials: 1
