@@ -122,6 +122,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 4
   type: 65
+  scriptRef: {fileID: 0}
   collision: 0
   isInBeam: 0
 --- !u!54 &4475208649095346402
