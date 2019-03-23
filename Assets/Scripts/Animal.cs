@@ -13,6 +13,7 @@ public class Animal : MonoBehaviour
     public float speed;
     public AnimalType type;
     public static Transform player;
+    public ShipMovement scriptRef;
     public bool collision = false;
     public bool isInBeam;
     private Quaternion basicRotation;
@@ -48,7 +49,12 @@ public class Animal : MonoBehaviour
     		}
     		this.transform.Translate(transform.forward * speed * Time.deltaTime);
     	} else {
-    		this.transform.position = Vector3.MoveTowards(this.transform.position, player.transform.position, speed * Time.deltaTime);
+    		//rb.useGravity = false;
+    		/*this.transform.position = Vector3.Lerp(this.transform.position, player.transform.position, speed * Time.deltaTime);
+    		this.transform.LookAt(player);*/
+    		if (!scriptRef.beamAnimals.Contains(this)) {
+    			scriptRef.beamAnimals.Add(this);
+    		}
     	}
     }
 
@@ -57,6 +63,7 @@ public class Animal : MonoBehaviour
     void OnTriggerStay(Collider other) {
 
     	if (other.gameObject.CompareTag("Beam")) isInBeam = true;	
+    	else isInBeam = false;
     }
 
     void OnTriggerEnter(Collider other) {
@@ -64,14 +71,22 @@ public class Animal : MonoBehaviour
     	if (other.gameObject.CompareTag("Player")) {
     		if (collision) return;
     		collision = true;
+    		Rigidbody rb = other.gameObject.GetComponent<Rigidbody>();
+    		rb.constraints = RigidbodyConstraints.FreezePositionY;
     		Stats.GetInstance().ModifyMoney((int)this.type);
     		UIManager.instance.UpdateMoney();
+    		scriptRef.transform.rotation = scriptRef.basicRotation;
+    		rb.constraints = RigidbodyConstraints.None;
     		Destroy(this.gameObject);
-
     	}
     }
 
     void OnTriggerExit(Collider other) {
     	if (other.gameObject.CompareTag("Beam")) isInBeam = false;
+    }
+
+    public void BumpUpwards(float forceValue) {
+    	Debug.Log("bumped: " + this.transform.name);
+    	rb.AddForce(Vector3.up * forceValue, ForceMode.Force);
     }
 }
