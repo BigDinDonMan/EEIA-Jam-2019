@@ -63,9 +63,13 @@ public class ShipMovement : MonoBehaviour
 		        RotateShip();*/
 		       	if (Input.acceleration.y > delta || Input.acceleration.y < -delta) {
 		       		rb.velocity += transform.forward * speed * Input.acceleration.y;
+		       	} else {
+		       		rb.velocity *= 0.8f;
 		       	}
 		       	if (Input.acceleration.x > delta || Input.acceleration.x < -delta) {
 		       		rb.velocity += transform.right * Input.acceleration.x * speed;
+		       	} else {
+		       		rb.velocity *= 0.8f;
 		       	}
 		       	rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
 		        rb.velocity = Vector3.ClampMagnitude(rb.velocity, clampValue);

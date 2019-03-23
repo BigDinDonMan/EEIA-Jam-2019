@@ -13,7 +13,7 @@ public class Animal : MonoBehaviour
     public float speed;
     public AnimalType type;
     public static Transform player;
-
+    public bool collision = false;
     public bool isInBeam;
 
     void Start() {
@@ -32,12 +32,20 @@ public class Animal : MonoBehaviour
 
 
     void OnTriggerStay(Collider other) {
+
+    	if (other.gameObject.CompareTag("Beam")) isInBeam = true;	
+    }
+
+    void OnTriggerEnter(Collider other) {
+    	
     	if (other.gameObject.CompareTag("Player")) {
+    		if (collision) return;
+    		collision = true;
     		Stats.GetInstance().ModifyMoney((int)this.type);
     		UIManager.instance.UpdateMoney();
     		Destroy(this.gameObject);
+
     	}
-    	if (other.gameObject.CompareTag("Beam")) isInBeam = true;	
     }
 
     void OnTriggerExit(Collider other) {
