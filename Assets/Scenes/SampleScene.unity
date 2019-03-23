@@ -1030,7 +1030,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 2076846170}
   ufoRb: {fileID: 737899180}
-  speed: 5
+  speed: 2.5
   tilt: 0.35
   clampValue: 12
   delta: 0.1
@@ -1157,6 +1157,11 @@ PrefabInstance:
         type: 3}
       propertyPath: InitialModule.startSpeed.scalar
       value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 521657668881014161, guid: 3e7fe8dbdd9b9a6499ee709c34e891bd,
+        type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3e7fe8dbdd9b9a6499ee709c34e891bd, type: 3}
