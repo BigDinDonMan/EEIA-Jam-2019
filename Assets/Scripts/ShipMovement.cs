@@ -164,5 +164,10 @@ public class ShipMovement : MonoBehaviour
     	if (other.gameObject.CompareTag("Ground")) {
     		gameOver = true;
     	}
+
+        if (other.gameObject.CompareTag("Cannonball")) {
+            Stats.GetInstance().ReduceHealth(1f);
+            Destroy(other.gameObject);
+        }
     }
 }
