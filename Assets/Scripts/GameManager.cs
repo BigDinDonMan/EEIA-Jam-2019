@@ -18,6 +18,8 @@ public class GameManager : MonoBehaviour
 
     public GameObject crystal;
 
+    public int cowAmount = 0;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -25,14 +27,12 @@ public class GameManager : MonoBehaviour
             highestCount = PlayerPrefs.GetInt("highestCount");
         }
     	cowPrefabs = Resources.LoadAll("Prefab/Cows", typeof(GameObject)).Cast<GameObject>().ToArray();
-        for (int i = 0; i < Random.Range(25, 40); ++i) {
+        cowAmount = Random.Range(25, 70);
+        for (int i = 0; i < cowAmount; ++i) {
+            Transform temp = crystalSpawnPoints[Random.Range(0, crystalSpawnPoints.Length)];
         	Instantiate(
         		cowPrefabs[Random.Range(0, cowPrefabs.Length)],
-        		new Vector3(
-        			this.transform.position.x + Random.Range(-range, range), 
-        			this.transform.position.y, 
-        			this.transform.position.z + Random.Range(-range, range)
-        		), 
+        		new Vector3(temp.position.x + Random.Range(-range, range), temp.position.y, temp.position.z + Random.Range(-range, range)),
         		Quaternion.identity
         	);
         }
@@ -62,6 +62,7 @@ public class GameManager : MonoBehaviour
             		Quaternion.identity
             	);
             }
+            cowAmount++;
         }
     }
 

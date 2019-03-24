@@ -12,5 +12,5 @@ public class GameOver : MonoBehaviour
     	SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
-    public void Quit() => Application.Quit();
+    public void Quit() => SceneManager.LoadScene(0);
 }
