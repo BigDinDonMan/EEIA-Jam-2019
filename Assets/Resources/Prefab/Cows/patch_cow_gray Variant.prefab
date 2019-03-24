@@ -107,15 +107,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 1cc00f48cba6e09479a8fa74a8b3731a, type: 3}
       propertyPath: m_LocalScale.x
-      value: 50
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 1cc00f48cba6e09479a8fa74a8b3731a, type: 3}
       propertyPath: m_LocalScale.y
-      value: 50
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 1cc00f48cba6e09479a8fa74a8b3731a, type: 3}
       propertyPath: m_LocalScale.z
-      value: 50
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: 1cc00f48cba6e09479a8fa74a8b3731a, type: 3}
       propertyPath: m_Materials.Array.data[1]
