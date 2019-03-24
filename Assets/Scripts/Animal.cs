@@ -69,11 +69,11 @@ public class Animal : MonoBehaviour
     void OnTriggerEnter(Collider other) {
     	
     	if (other.gameObject.CompareTag("Player")) {
-    		if (collision) return;
+    		if (collision || ShipMovement.gameOver) return;
     		collision = true;
     		Rigidbody rb = other.gameObject.GetComponent<Rigidbody>();
     		rb.constraints = RigidbodyConstraints.FreezePositionY;
-    		Stats.GetInstance().ModifyMoney((int)this.type);
+    		Stats.GetInstance().ModifyMoney(1);
     		UIManager.instance.UpdateMoney();
     		scriptRef.transform.rotation = scriptRef.basicRotation;
     		rb.constraints = RigidbodyConstraints.None;

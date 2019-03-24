@@ -4,22 +4,28 @@ using UnityEngine;
 
 public partial class Cannon : MonoBehaviour
 {
-	public float shotTimer = 0f;
+    private Transform shootpoint;
+    public GameObject cannonballPrefab;
+
+    public float shotTimer = 0f;
 	public Transform player;
-    // Start is called before the first frame update
     void Start()
     {
-        shotTimer = 10f;
+        shotTimer = 0f;
+        player = GameObject.FindWithTag("Player").transform;
+        shootpoint = transform.GetChild(0);
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
-    }
-
-    public void Shoot() {
-    	if (shotTimer > 0f) return;
+        transform.LookAt(player);
+        if (shotTimer > 10f)
+        {
+            GameObject go = Instantiate(cannonballPrefab, shootpoint.position, Quaternion.Euler(new Vector3(0f, 0f, 0f)));
+            go.GetComponent<Rigidbody>().velocity = new Vector3(player.position.x - shootpoint.position.x, player.position.y - shootpoint.position.y + (player.position.x - shootpoint.position.x) / 3 + (player.position.z - shootpoint.position.z) / 3, player.position.z - shootpoint.position.z).normalized * 20f;
+            shotTimer = 0f;
+        }
+        shotTimer += Time.deltaTime;
 
     }
 }

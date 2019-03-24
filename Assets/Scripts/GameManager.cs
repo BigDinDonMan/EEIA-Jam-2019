@@ -12,9 +12,14 @@ public class GameManager : MonoBehaviour
 
 	public float range;
 
+    public static int highestCount;
+
     // Start is called before the first frame update
     void Start()
     {
+        if (PlayerPrefs.HasKey("highestCount")) {
+            highestCount = PlayerPrefs.GetInt("highestCount");
+        }
     	cowPrefabs = Resources.LoadAll("Prefab/Cows", typeof(GameObject)).Cast<GameObject>().ToArray();
         for (int i = 0; i < Random.Range(25, 40); ++i) {
         	Instantiate(
@@ -32,18 +37,25 @@ public class GameManager : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
-        cowSpawnTimer -=Time.deltaTime;
-        if (cowSpawnTimer <= 0f) {
-        	cowSpawnTimer = 5f;
-        	Instantiate(
-        		cowPrefabs[Random.Range(0, cowPrefabs.Length)], new Vector3(
-        			this.transform.position.x + Random.Range(-range, range), 
-        			this.transform.position.y, 
-        			this.transform.position.z + Random.Range(-range, range)
-        		),
-        		Quaternion.identity
-        	);
+    {   
+        if (!ShipMovement.gameOver) {
+            cowSpawnTimer -=Time.deltaTime;
+            if (cowSpawnTimer <= 0f) {
+            	cowSpawnTimer = 5f;
+            	Instantiate(
+            		cowPrefabs[Random.Range(0, cowPrefabs.Length)], new Vector3(
+            			this.transform.position.x + Random.Range(-range, range), 
+            			this.transform.position.y, 
+            			this.transform.position.z + Random.Range(-range, range)
+            		),
+            		Quaternion.identity
+            	);
+            }
         }
+    }
+
+    public static void ResetStaticVars() {
+        GameManager.highestCount = 0;
+        ShipMovement.gameOver = false;
     }
 }
