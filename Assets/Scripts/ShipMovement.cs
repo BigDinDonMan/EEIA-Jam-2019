@@ -1,5 +1,4 @@
-﻿#define DEBUG
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -63,12 +62,6 @@ public class ShipMovement : MonoBehaviour
 
     void Update()
     {
-    	#if DEBUG
-    		if (Input.GetMouseButtonDown(0)) {
-    			Stats.GetInstance().ModifyFuel(-150f);
-    		}
-    	#endif
-    	
     	if (gameOver) {
     		//Time.timeScale = 0;
     		cam.transform.SetParent(null);
