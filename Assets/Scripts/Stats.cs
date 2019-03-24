@@ -21,7 +21,7 @@ public class Stats
 	private Stats() {
 		money = 0;
 		speed = 0f;
-		health = maxHealth = 150;
+		health = maxHealth = 3;
 		fuel = maxFuel = 150;
 	}
 
