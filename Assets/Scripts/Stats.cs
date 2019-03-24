@@ -11,6 +11,8 @@ public class Stats
 	public float maxFuel;
 	public float maxHealth;
 
+	public static int highscore;
+
 	private static Stats instance = null;
 
 	public static Stats GetInstance() {

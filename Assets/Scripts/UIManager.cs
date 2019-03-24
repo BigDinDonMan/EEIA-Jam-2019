@@ -16,6 +16,7 @@ public class UIManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        DontDestroyOnLoad(this.gameObject);
         gameOverScreen?.gameObject.SetActive(!true);
         UpdateMoney();
         instance = this;
