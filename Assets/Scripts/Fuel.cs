@@ -14,4 +14,10 @@ public class Fuel : MonoBehaviour
     		Destroy(this.gameObject);
     	}
     }
+
+    void OnTriggerStay(Collider other) {
+        if (other.gameObject.CompareTag("Beam")) {
+            this.gameObject.GetComponent<Rigidbody>().AddForce(Vector3.up * 20f);
+        }
+    }
 }

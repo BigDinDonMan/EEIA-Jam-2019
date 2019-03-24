@@ -14,6 +14,10 @@ public class GameManager : MonoBehaviour
 
     public static int highestCount;
 
+    public Transform[] crystalSpawnPoints;
+
+    public GameObject crystal;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -33,6 +37,13 @@ public class GameManager : MonoBehaviour
         	);
         }
         cowSpawnTimer = 5f;
+
+        foreach (var spawnPoint in crystalSpawnPoints) {
+            int amount = Random.Range(2, 5);
+            for (int i = 0; i < amount; ++i) {
+                Instantiate(crystal, new Vector3(spawnPoint.position.x + Random.Range(-10f, 10f), spawnPoint.position.y, spawnPoint.position.z + Random.Range(-10f, 10f)), Quaternion.identity);
+            }
+        }
     }
 
     // Update is called once per frame

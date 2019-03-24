@@ -161,13 +161,17 @@ public class ShipMovement : MonoBehaviour
     	}
     }
     void OnCollisionEnter(Collision other) {
-    	if (other.gameObject.CompareTag("Ground")) {
-    		gameOver = true;
-    	}
+    	
 
         if (other.gameObject.CompareTag("Cannonball")) {
             Stats.GetInstance().ReduceHealth(1f);
             Destroy(other.gameObject);
         }
+    }
+
+    void OnTriggerEnter(Collider other) {
+    	if (other.gameObject.CompareTag("Ground")) {
+    		gameOver = true;
+    	}
     }
 }

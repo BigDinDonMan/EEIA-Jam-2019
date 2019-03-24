@@ -33,6 +33,9 @@ public class Stats
 		try {
 			UIManager.instance.UpdateFuel();
 		} catch (System.Exception) {}
+		if (fuel <= 0f) {
+			ShipMovement.gameOver = true;
+		}
 	}
 
 	public void ReduceHealth(float val) {
