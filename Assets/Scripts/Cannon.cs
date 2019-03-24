@@ -19,7 +19,7 @@ public partial class Cannon : MonoBehaviour
     void Update()
     {
         transform.LookAt(player);
-        if (shotTimer > 10f)
+        if (shotTimer > 10f && Vector3.Distance(this.transform.position, player.position) < 30f)
         {
             GameObject go = Instantiate(cannonballPrefab, shootpoint.position, Quaternion.Euler(new Vector3(0f, 0f, 0f)));
             go.GetComponent<Rigidbody>().velocity = new Vector3(player.position.x - shootpoint.position.x, player.position.y - shootpoint.position.y + (player.position.x - shootpoint.position.x) / 3 + (player.position.z - shootpoint.position.z) / 3, player.position.z - shootpoint.position.z).normalized * 20f;
