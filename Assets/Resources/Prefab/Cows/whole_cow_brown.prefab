@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 7633900015040938284}
   - component: {fileID: 8714320142547344999}
   - component: {fileID: 9124550330487563911}
+  - component: {fileID: 1138000542509149984}
   m_Layer: 0
   m_Name: whole_cow_brown
   m_TagString: Animal
@@ -95,7 +96,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf1eae0a1aa9e664390cbf18b814897d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 4
+  speed: 2.75
   type: 65
   scriptRef: {fileID: 0}
   collision: 0
@@ -124,8 +125,21 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5915386848048337186}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.011217303, y: 0.016737275, z: 0.026092961}
   m_Center: {x: 0, y: -0.00003905315, z: 0.003213942}
+--- !u!65 &1138000542509149984
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5915386848048337186}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.011217303, y: 0.01393275, z: 0.026092961}
+  m_Center: {x: 0, y: -0.0014413163, z: 0.003213942}

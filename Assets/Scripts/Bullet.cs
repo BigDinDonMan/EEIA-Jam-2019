@@ -8,6 +8,7 @@ public class Bullet : MonoBehaviour
     public int damage;
     private float destroyTimer = 0f;
     public Vector3 direction = Vector3.zero;
+    private bool boolean_doopy = false;
     //public float speed;
     //public Vector3 direction;
     //private bool hasBeenShot = false;
@@ -32,5 +33,16 @@ public class Bullet : MonoBehaviour
     	//damage = _damage;
     	//speed = _speed;
     	direction = _direction;
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            if (boolean_doopy) return;
+            boolean_doopy = true;
+            Stats.GetInstance().ReduceHealth(1f);
+            Destroy(this.gameObject);
+        }
     }
 }

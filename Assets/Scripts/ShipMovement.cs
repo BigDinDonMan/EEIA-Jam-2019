@@ -83,24 +83,32 @@ public class ShipMovement : MonoBehaviour
 			        ufoRb.velocity = rb.velocity;
 			        RotateShip();*/
 			       	if (Input.acceleration.y > delta || Input.acceleration.y < -delta) {
-			       		rb.velocity += transform.forward * speed * Input.acceleration.y;
+			       		rb.velocity += transform.forward * speed * (Input.acceleration.y < 0 ? -1f : 1f);
 			       	} else {
 			       		rb.velocity *= 0.8f;
 			       	}
 			       	if (Input.acceleration.x > delta || Input.acceleration.x < -delta) {
-			       		rb.velocity += transform.right * Input.acceleration.x * speed;
+			       		rb.velocity += transform.right  * speed * (Input.acceleration.x < 0 ? -1f : 1f);
 			       	} else {
 			       		rb.velocity *= 0.8f;
 			       	}
+                    Debug.Log(Input.acceleration.ToString());
 			       	rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
 			        rb.velocity = Vector3.ClampMagnitude(rb.velocity, clampValue);
 			        ufoRb.velocity = rb.velocity;
 			        RotateShip();
 	    			break;
 	    		case ShipMode.Vertical:
-	    			rb.velocity = new Vector3(rb.velocity.x, Input.acceleration.y, rb.velocity.z) * speed;
-	    			ufoRb.velocity = rb.velocity;
-	    			ufoRb.constraints = RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationX;
+	    			if (Mathf.Abs(Input.acceleration.y) > delta)
+                    {
+                        rb.velocity = new Vector3(rb.velocity.x, Input.acceleration.y, rb.velocity.z) * speed;
+                    } else
+                    {
+                        rb.velocity *= 0.8f;
+                    }
+                    ufoRb.velocity = rb.velocity;
+
+                    ufoRb.constraints = RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationX;
 	    			if (Input.GetMouseButtonDown(0)) {
 	    				beamAnimals.ForEach(animal => {
 	    					if (animal.isInBeam) animal.BumpUpwards(beamForce);
@@ -160,18 +168,12 @@ public class ShipMovement : MonoBehaviour
     		yield return new WaitForSeconds(1.5f);
     	}
     }
-    void OnCollisionEnter(Collision other) {
-    	
-
-        if (other.gameObject.CompareTag("Cannonball")) {
-            Stats.GetInstance().ReduceHealth(1f);
-            Destroy(other.gameObject);
-        }
-    }
+    
 
     void OnTriggerEnter(Collider other) {
     	if (other.gameObject.CompareTag("Ground")) {
     		gameOver = true;
     	}
+        
     }
 }

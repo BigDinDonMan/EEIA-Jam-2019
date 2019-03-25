@@ -45,7 +45,7 @@ public class Stats
 		if (health <= 0f) {
 			PlayerPrefs.SetInt("highestCount", money);
 			ResetStats();
-			UnityEngine.SceneManagement.SceneManager.LoadScene("GameOver");
+            ShipMovement.gameOver = true;
 		}
 		UIManager.instance.UpdateHealth();
 	}

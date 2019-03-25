@@ -11,7 +11,14 @@ public class MainMenu : MonoBehaviour
     public Transform creditsWindow;
 
     public void GameStart() => SceneManager.LoadScene(1);
-    public void ExitGame() => Application.Quit();
+    public void ExitGame()
+    {
+    #if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false; 
+    #else 
+        Application.Quit();
+    #endif
+    }
     public void ShowInfo() {
         infoWindow.gameObject.SetActive(true);
         foreach (var button in buttons) button.gameObject.SetActive(false);
