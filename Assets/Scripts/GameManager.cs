@@ -21,8 +21,7 @@ public class GameManager : MonoBehaviour
     public int cowAmount = 0;
 
     // Start is called before the first frame update
-    void Start()
-    {
+    void Start(){
         if (PlayerPrefs.HasKey("highestCount")) {
             highestCount = PlayerPrefs.GetInt("highestCount");
         }
@@ -47,8 +46,7 @@ public class GameManager : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {   
+    void Update(){   
         if (!ShipMovement.gameOver) {
             cowSpawnTimer -=Time.deltaTime;
             if (cowSpawnTimer <= 0f) {
